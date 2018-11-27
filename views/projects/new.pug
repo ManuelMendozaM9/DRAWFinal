@@ -1,0 +1,39 @@
+#new-project-modal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='gridSystemModalLabel')
+  .modal-dialog(role='document')
+    .modal-content
+      form(action='/projects/new/')
+        .modal-header
+          button.close(type='button' data-dismiss='modal' aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4#gridSystemModalLabel.modal-title New Project
+        .modal-body
+          .form-group
+            label(for='project-name') Project name
+            input#project-name.form-control(type='text' placeholder='Name' name='name')
+          .form-group
+            label(for='project-application-date') Project request date
+            input#project-application-date.form-control(type='date' name='applicationDate')
+          .form-group
+            label(for='project-start-date') Project start date
+            input#project-start-date.form-control(type='date' name='startDate')
+          .form-group
+            label(for='project-description') Description
+            textarea#project-description.form-control(name='description')
+          .form-group
+            label(for='project-manager') Proyect manager
+            select#project-manager.form-control(name='projectManager')
+              each user in users
+                option(value=user.id) #{user.email}
+          .form-group
+            label(for='project-owner') Proyect owner
+            select#project-owner.form-control(multipe="multiple" name='productOwner')
+              each user in users
+                option(value=user.id) #{user.email}
+          .form-group
+            label(for='project-team') Proyect team
+            select#project-team.form-control(multipe="multiple" name='team')
+              each user in users
+                option(value=user.id) #{user.email}
+        .modal-footer
+          button.btn.btn-default(type='button' data-dismiss='modal') Close
+          button.btn.btn-primary.new-project-ajax(type='button') Save

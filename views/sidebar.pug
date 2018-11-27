@@ -1,0 +1,21 @@
+// LEFT SIDEBAR
+#sidebar-nav.sidebar
+  .sidebar-scroll
+    nav
+      ul.nav
+        li
+          a(href='/' class= (baseUrl == '' && 'active'))
+            i.lnr.lnr-home
+            span Home
+        li
+          a(href='/projects' class= (baseUrl == '/projects' && 'active'))
+            i.lnr.lnr-layers
+            span Projects
+        li
+          a(href='/stories' class= (baseUrl == '/stories' && 'active'))
+            i.lnr.lnr-file-empty
+            span Stories
+        li
+          a(href='/users' class= (baseUrl == '/users' && 'active'))
+            i.lnr.lnr-user
+            span Users

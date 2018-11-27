@@ -1,0 +1,54 @@
+extends ../layout
+
+block content
+  .col-md-12
+    .panel.panel-headline
+      .panel-heading
+        h3.panel-title #{title}
+        p.panel-subtitle #{description}
+        .right
+            button(type='button' style="margin:0;" data-toggle="modal" data-target="#new-project-modal")
+              i.lnr.lnr-plus-circle(style="font-size:20px;")
+      .panel-body
+        table.table.table-hover
+          thead
+            tr
+              th Name
+              th Description
+          tbody
+            each project in projects.docs
+              tr
+                td #{project.name}
+                td #{project.description}
+      .panel-footer
+        .row
+          .col-md-6
+            h5 #{projectsCount} Projects
+          nav.col-md-6.text-right(aria-label='Page navigation')
+            ul.pagination.pagination-sm(style="margin:3px 0 0")
+                if projects.hasPrevPage
+                  li
+                    a(href=`${(parseInt(projects.page) - 1)}` aria-label='Previous')
+                      span(aria-hidden='true') &laquo;
+                  li
+                    a(href=`${parseInt(projects.page) - 1}`) #{parseInt(projects.page) - 1}
+                else
+                  li(class="disabled")
+                    a(href="#" aria-label='Previous')
+                      span(aria-hidden='true') &laquo;
+                  li
+                li.active
+                  a(href='#') #{projects.page}
+                if projects.hasNextPage
+                  li
+                    a(href=`${parseInt(projects.page) + 1}`) #{parseInt(projects.page) + 1}
+                  li(class={"disabled": !projects.hasNextPage})
+                    a(href=`${parseInt(projects.page) + 1}` aria-label='Next')
+                      span(aria-hidden='true') &raquo;
+                else
+                  li(class={"disabled": !projects.hasNextPage})
+                    a(href="#" aria-label='Next')
+                      span(aria-hidden='true') &raquo;
+                      
+  //- includes the new project modal
+  include new.pug
